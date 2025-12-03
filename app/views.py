@@ -14,7 +14,7 @@ class FilmesView(View):
 class SeriesView(View):
     def get(self, request, *args, **kwargs):
         series = Serie.objects.all()
-        return render(request, 'series.html', {'series': serie})
+        return render(request, 'series.html', {'series': series})
 
 class EpisodiosView(View):
     def get(self, request, *args, **kwargs):
