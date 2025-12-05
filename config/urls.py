@@ -34,4 +34,6 @@ path('elencos/', ElencoView.as_view(),
 name='elencos'),
 path('atuacoes/', AtuacaoView.as_view(),
 name='atuacoes'),
+path('delete/<int:id>/', DeleteFilmeView.as_view(),
+name='delete'),
 ]

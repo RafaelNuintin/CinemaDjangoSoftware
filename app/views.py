@@ -36,3 +36,10 @@ class AtuacaoView(View):
     def get(self, request, *args, **kwargs):
         atuacoes = Atuacao.objects.all()
         return render(request, 'atuacoes.html', {'atuacoes': atuacoes})
+
+class DeleteFilmeView(View):
+    def get(self, request, id, *args, **kwargs):
+        filme = Filme.objects.get(id=id)
+        filme.delete()
+        messages.success(request, 'Filme excluído com sucesso!') # Success message
+        return redirect('filmes')

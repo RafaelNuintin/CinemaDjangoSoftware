@@ -60,6 +60,41 @@ href="/admin/">Administração</a>
 <p class="lead">Seja Bem Vindo(A)</p>
 </div>
 </div>
+<div class="container mt-5">
+    <table class="table bg-white">
+    <thead>
+    <tr>
+    <th scope="col">Nome</th>
+    <th scope="col">Duracao</th>
+    <th scope="col">Sinopse</th>
+    <th scope="col">Site Oficial</th>
+    <th scope="col">Data de Lançamento</th>
+    <th scope="col">Nota de Avaliação</th>
+    <th scope="col">Gênero</th>
+    <th scope="col">País</th>
+    <th scope="col">Diretor</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for filmes in filmes %}
+    <tr>
+    <td>{{ filmes.nome }}</td>
+    <td>{{ filmes.duracao }}</td>
+    <td>{{ filmes.sinopse }}</td>
+    <td>{{ filmes.site_oficial }} </td>
+    <td>{{ filmes.data_lancamento }}</td>
+    <td>{{ filmes.nota_avaliacao }}</td>
+    <td>{{ filmes.genero }}</td>
+    <td>{{ filmes.pais }}</td>
+    <td>{{ filmes.diretor }}</td>
+    <td><a href="delete/{{ filmes.id }}" class="btn btn-danger">Excluir</a></td>
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    
 <!-- Incluindo jQuery e Bootstrap JS -->
 <script
 src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
