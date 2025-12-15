@@ -54,33 +54,25 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css
         </div>
         </nav>
 <div class="container mt-5">
-<h2 class="mb-4 text-white">Tabela de Séries</h2>
+<h2 class="mb-4 text-white">Tabela de Diretores</h2>
 <table class="table text-white">
 <thead>
 <tr>
 <th scope="col">Nome</th>
-<th scope="col">Temporadas</th>
-<th scope="col">Sinopse</th>
-<th scope="col">Site Oficial</th>
-<th scope="col">Data de lançamento</th>
-<th scope="col">Nota de Avaliação</th>
-<th scope="col">Gênero</th>
-<th scope="col">País</th>
-<th scope="col">Diretor</th>
+<th scope="col">Site</th>
+<th scope="col">Instagram</th>
+<th scope="col">Facebook</th>
+<th scope="col">Nacionalidade</th>
 </tr>
 </thead>
 <tbody>
-{% for series in series %}
+{% for elencos in elencos %}
 <tr>
-<td>{{ series.nome }}</td>
-<td>{{ series.temporadas }}</td>
-<td>{{ series.sinopse }}</td>
-<td>{{ series.site_oficial }} </td>
-<td>{{ series.data_lancamento }}</td>
-<td>{{ series.nota_avaliacao }}</td>
-<td>{{ series.genero }}</td>
-<td>{{ series.pais }}</td>
-<td>{{ series.diretor }}</td>
+<td>{{ elencos.nome }}</td>
+<td>{{ elencos.site }}</td>
+<td>{{ elencos.insta }}</td>
+<td>{{ elencos.face }}</td>
+<td>{{ elencos.nacionalidade }}</td>
 </tr>
 {% endfor %}
 </tbody>

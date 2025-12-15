@@ -31,14 +31,15 @@ class TemporadasView(View):
     def get(self, request, *args, **kwargs):
         temporadas = Temporada.objects.all()
         return render(request, 'temporadas.html', {'temporadas': temporadas})
-class ElencoView(View):
+class AtorView(View):
     def get(self, request, *args, **kwargs):
-        elencos = Elenco.objects.all()
-        return render(request, 'elenco.html', {'elencos': elencos})
-class AtuacaoView(View):
+        atores = Ator.objects.all()
+        return render(request, 'atores.html', {'atores': atores})
+    
+class DiretorView(View):
     def get(self, request, *args, **kwargs):
-        atuacoes = Atuacao.objects.all()
-        return render(request, 'atuacoes.html', {'atuacoes': atuacoes})
+        diretores = Diretor.objects.all()
+        return render(request, 'diretores.html', {'dretores': diretores})
 
 class DeleteFilmeView(View):
     def get(self, request, id, *args, **kwargs):

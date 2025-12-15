@@ -11,16 +11,6 @@ class Genero(models.Model):
         verbose_name = "Gênero"
         verbose_name_plural = "Gêneros"
 
-class Episodio(models.Model):
-    nome = models.CharField(max_length = 100, verbose_name = "Nome do episódio")
-
-    def __str__(self):
-        return self.nome
-    
-    class Meta:
-        verbose_name = "Episódio"
-        verbose_name_plural = "Episódios"
-
 class Temporada(models.Model):
     temporada = models.IntegerField(verbose_name = "Temporada")
 
@@ -52,7 +42,7 @@ class Pais(models.Model):
         verbose_name = "País"
         verbose_name_plural = "Países"
 
-class Elenco(models.Model):
+class Diretor(models.Model):
     nome = models.CharField(max_length = 100, verbose_name = "Nome")
     site = models.CharField(max_length = 100, verbose_name = "Site")
     insta = models.CharField(max_length = 100, verbose_name = "Instagram")
@@ -63,8 +53,8 @@ class Elenco(models.Model):
         return self.nome
 
     class Meta:
-        verbose_name = "Elenco"
-        verbose_name_plural = "Elencos"
+        verbose_name = "Diretor"
+        verbose_name_plural = "Diretores"
 
 class Filme(models.Model):
     nome = models.CharField(max_length = 100, verbose_name = "Nome do filme")
@@ -75,7 +65,7 @@ class Filme(models.Model):
     nota_avaliacao = models.FloatField(verbose_name = "Nota da avaliação")
     genero = models.ForeignKey(Genero, on_delete = models.CASCADE, verbose_name = "Gênero")
     pais = models.ForeignKey(Pais, on_delete = models.CASCADE, verbose_name = "País")
-    diretor = models.ForeignKey(Elenco, on_delete = models.CASCADE, verbose_name = "Diretor")
+    diretor = models.ForeignKey(Diretor, on_delete = models.CASCADE, verbose_name = "Diretor")
 
     def __str__(self):
         return f"{self.nome}, {self.data_lancamento}"
@@ -84,16 +74,20 @@ class Filme(models.Model):
         verbose_name = "Filme"
         verbose_name_plural = "Filmes"
 
-class Atuacao(models.Model):
-    filme = models.ForeignKey(Filme, on_delete=models.CASCADE, verbose_name = "Filme")
-    ator = models.ForeignKey(Elenco, on_delete=models.CASCADE, verbose_name = "Ator")
+class Ator(models.Model):
+    nome = models.CharField(max_length = 100, verbose_name = "Nome")
+    site = models.CharField(max_length = 100, verbose_name = "Site")
+    insta = models.CharField(max_length = 100, verbose_name = "Instagram")
+    face = models.CharField(max_length = 100, verbose_name = "Facebook")
+    nacionalidade = models.CharField(max_length = 100, verbose_name = "Nacionalidade")
+    filme = models.ForeignKey(Filme, on_delete = models.CASCADE, verbose_name = "Filme")
 
     def __str__(self):
-        return f"{self.ator}, {self.filme}"
+        return self.nome
 
     class Meta:
-        verbose_name = "Atuação"
-        verbose_name_plural = "Atuações"
+        verbose_name = "Ator"
+        verbose_name_plural = "Atores"
 
 class Serie(models.Model):
     nome = models.CharField(max_length = 100, verbose_name = "Nome da série")
@@ -104,7 +98,7 @@ class Serie(models.Model):
     nota_avaliacao = models.FloatField(verbose_name = "Nota da avaliação")
     genero = models.ForeignKey(Genero, on_delete = models.CASCADE, verbose_name = "Gênero")
     pais = models.ForeignKey(Pais, on_delete = models.CASCADE, verbose_name = "País")
-    diretor = models.ForeignKey(Elenco, on_delete = models.CASCADE, verbose_name = "Elenco")
+    diretor = models.ForeignKey(Diretor, on_delete = models.CASCADE, verbose_name = "Elenco")
 
     def __str__(self):
         return f"{self.nome}, {self.data_lancamento}"
@@ -113,16 +107,13 @@ class Serie(models.Model):
         verbose_name = "Série"
         verbose_name_plural = "Séries"
 
-class EpisodiosSerie(models.Model):
-    serie = models.ForeignKey(Serie, on_delete = models.CASCADE, verbose_name = "Nome da série")
-    temporada = models.ForeignKey(Temporada, on_delete = models.CASCADE, verbose_name = "Temporada da série")
-    episodio = models.ForeignKey(Episodio, on_delete = models.CASCADE, verbose_name = "Episódio da série")
-    duracao = models.IntegerField(verbose_name = "Duração")
-    data_disponibilizacao = models.DateField(verbose_name = "Data de disponibilização")
+class Episodio(models.Model):
+    nome = models.CharField(max_length = 100, verbose_name = "Nome do episódio")
+    serie = models.ForeignKey(Serie, on_delete = models.CASCADE, verbose_name = "Série")
 
     def __str__(self):
-        return f"{self.episodio}, {self.temporada}, {self.serie}"
-
+        return self.nome
+    
     class Meta:
-        verbose_name = "Episódio de série"
-        verbose_name_plural = "Episódios de série"
+        verbose_name = "Episódio"
+        verbose_name_plural = "Episódios"
