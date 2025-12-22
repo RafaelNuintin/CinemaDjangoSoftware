@@ -46,6 +46,7 @@ class DeleteFilmeView(View):
         filme = Filme.objects.get(id=id)
         filme.delete()
         messages.success(request, 'Filme excluído com sucesso!') # Success message
+        return redirect('index')
 class EditarFilmeView(View):
     template_name = 'editar_filme.html'
     def get(self, request, id, *args, **kwargs):
@@ -58,7 +59,7 @@ class EditarFilmeView(View):
         if form.is_valid():
             form.save()
             messages.success(request, 'As edições foram salvas com sucesso.')
-            return redirect('editar', id=id) # Redirecionar de volta para a página de edição
+            return redirect('index') # Redirect to index page after successful edit
         else:
             messages.error(request, 'Corrija os erros no formulário antes de enviar novamente.')
             return render(request, self.template_name, {'filme': filme, 'form': form})
